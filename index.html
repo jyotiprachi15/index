@@ -1,0 +1,166 @@
+<html>
+<head>
+<title> To do list </title>
+
+<body>
+ <style>
+    body { 
+	   background-image:
+	   url("2.jpg");
+	   }
+	   position = relative
+ </style>
+<h1 style ="color:#800000;  font-size:20px;" > ...Select the following serial number to proceed... </h1>
+  <style> 
+    h1 {
+       position: absolute;
+	   left:28%;
+	   top:44%;
+	   }
+  </style>
+<p> 
+    1.Insert my task </br>
+    2.Delete a task </br>
+	3.Show my tasks 
+</p>
+ <style>
+  p { 
+      position: relative;
+	  left:28%;
+	  top:48%;
+	  color:#00008B;
+	  font-size:18px;
+	  }
+ </style>
+ 
+ <div id="myDIV" class="header">
+ 
+  <input type="text" id ="myInput" placeholder=" Type ">
+  <button id="but" onclick="hello()"> click </button>
+ <p id = "message"></p>
+ <ul id = "demo"></ul>
+  </div>
+ <style>
+    span { color:red;
+	     }
+   </style>
+      
+
+
+<style>
+   div {
+         position: absolute;
+     left:32%;
+     top:60%;
+     }
+   placeholder {
+	      text-color:blue;
+	      textborder-width:thick;
+		  border-style:thin;
+			}
+</style>   
+
+<style type="text/css">
+  ul {
+    position: relative;
+    color:orange;
+  }
+  input{
+    color:#191970;
+	border-color:black;
+	border-width:medium;
+  }
+  button{
+    color:#FF0000;
+	border-style:solid;
+	border-width:medium ;
+	border-color:red;
+  }
+  p{
+   color:green
+
+   }
+</style>  
+  
+ <script type="text/javascript">
+ var list = document.getElementById("demo");
+ var input = document.getElementById("myInput");
+ function hello(){
+   var x = input.value;
+   if(x == "1"){
+         var item = document.createElement("li");
+         var x = document.createTextNode(" click and enter your task");
+         item.appendChild(x);
+         list.appendChild(item);
+         for (y=0;y<list.childElementCount;y++){
+            list.childNodes[y].onclick = function() {upgrade(this)};
+          }
+          if (document.getElementById("message").hasChildNodes() == true){
+            document.getElementById("message").childNodes[0].remove();
+          }
+      }
+
+    if (x == "2"){
+	     var x = document.createTextNode("....Click to remove your task...");
+       document.getElementById("message").appendChild(x);
+
+      var y;
+      for (y=0;y<list.childElementCount;y++){
+            list.childNodes[y].onclick = function() {del(this)};
+          }
+    }
+
+    if (x == "3"){
+      var y;
+      for (y=0;y<list.childElementCount;y++){
+            list.childNodes[y].onclick = function() {
+              return false;
+            };
+          }
+      if (document.getElementById("message").hasChildNodes() == true){
+      document.getElementById("message").childNodes[0].remove();
+    }
+    }
+   }
+
+ function upgrade(elmnt){
+  var inpt = document.createElement("input");
+  inpt.value = elmnt.childNodes[0].textContent;
+  elmnt.appendChild(inpt);
+  var button = document.createElement("button");
+  var y = document.createTextNode("Enter");
+  button.appendChild(y);
+  button.onclick = function() {add(elmnt)};
+  elmnt.appendChild(button);
+  elmnt.childNodes[0].remove();
+  elmnt.onclick = function() {
+    return false;
+  };
+ }
+
+ function add(elmnt){
+    var inpt = elmnt.childNodes[0];
+    var x = inpt.value;
+    if (x!=""){
+      var node = document.createTextNode(x);
+      var button = elmnt.childNodes[1];
+      inpt.remove();
+      button.remove();
+      elmnt.appendChild(node);
+      elmnt.onclick = function() {up(elmnt)};
+    }
+ }
+
+ function up(elmnt){
+  elmnt.onclick = function() {upgrade(elmnt)};
+ }
+
+ function del(elmnt){
+ 
+  elmnt.remove();
+ }
+
+</script>
+</body>
+</head>
+</html>
